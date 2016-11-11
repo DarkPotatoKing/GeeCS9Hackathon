@@ -4,6 +4,7 @@ from django.db import models
 
 # Create your models here.
 class  Subject(models.Model):
+    rank = models.IntegerField(default=0)
     slots = models.IntegerField(default=0)
     demand = models.IntegerField(default=0)
     subject = models.CharField(max_length=50, default="subj")
