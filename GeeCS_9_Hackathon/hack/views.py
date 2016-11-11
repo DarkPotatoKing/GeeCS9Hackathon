@@ -6,3 +6,9 @@ def index(request):
 
 def sched(request):
     return HttpResponse("Hello, world. You're at the sched.")
+
+def recommend(request):
+    return HttpResponse("Hello, world. You're at the recommend.")
+
+def demand(request):
+    return HttpResponse("Hello, world. You're at the demand.")
