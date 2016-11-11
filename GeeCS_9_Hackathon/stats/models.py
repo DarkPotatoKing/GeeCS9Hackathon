@@ -14,4 +14,4 @@ class  Subject(models.Model):
     units = models.IntegerField(default=3)
 
     def __str__(self):
-        return '{} {} {}/{} {} {}'.format(self.subject, self.section, self.demand, self.slots, self.prof, self.sched)
+        return 'Rank {} {} {} {}/{} {} {} {}'.format(self.rank, self.subject, self.section, self.demand, self.slots, self.units,  self.prof, self.sched)
