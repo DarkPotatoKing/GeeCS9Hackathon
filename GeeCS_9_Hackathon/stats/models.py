@@ -11,6 +11,7 @@ class  Subject(models.Model):
     section = models.CharField(max_length=20, default="section")
     prof = models.CharField(max_length=100,  default="prof")
     sched = models.CharField(max_length=1000, default="sched")
+    units = models.IntegerField(default=3)
 
     def __str__(self):
         return '{} {} {}/{} {} {}'.format(self.subject, self.section, self.demand, self.slots, self.prof, self.sched)
