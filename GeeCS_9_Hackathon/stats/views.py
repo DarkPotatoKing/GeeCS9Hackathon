@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from .models import Subject
+
 def index(request):
     context = {}
     return render(request, 'stats/index.html', context)
@@ -13,6 +15,13 @@ def recommend(request):
     return render(request, 'stats/recommend.html', context)
 
 def demand(request):
-    context = {}
+    t = '<td id="class">{}</td>\n<td id="details">{}</td>\n<td id="demand">{}</td>'
+
+    s = filter(lambda x: x.slots > 0, Subject.objects.all())
+    s = [[i.subject, i.sched, float(i.demand)/float(i.slots)] for i in s]
+    s.sort(key = lambda x: x[-1], reverse = True)
+    subjects = s
+
+    context = { 'subjects': subjects, }
     return render(request, 'stats/demand.html', context)
 
