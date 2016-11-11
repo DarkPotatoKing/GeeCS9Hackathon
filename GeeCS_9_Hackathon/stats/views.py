@@ -20,6 +20,7 @@ def demand(request):
     s = filter(lambda x: x.slots > 0, Subject.objects.all())
     s = [[i.subject, i.sched, float(i.demand)/float(i.slots)] for i in s]
     s.sort(key = lambda x: x[-1], reverse = True)
+    s = [[i[0], i[1], "{00:.0f}%".format(i[2]*100)] for i in s]
     subjects = s
 
     context = { 'subjects': subjects, }
