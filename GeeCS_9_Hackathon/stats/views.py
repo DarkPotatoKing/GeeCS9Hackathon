@@ -51,10 +51,13 @@ def recommend(request):
     return render(request, 'stats/recommend.html', context)
 
 def demand(request):
+    t = '<td id="class">{}</td>\n<td id="details">{}</td>\n<td id="demand">{}</td>'
+
     s = filter(lambda x: x.slots > 0, Subject.objects.all())
-    s = [[float(i.demand)/float(i.slots), i.demand, i.slots, i.subject] for i in s]
-    s.sort(key = lambda x: x[0], reverse = True)
-    subjects = ['{} {}/{} {}'.format(i[0], i[1], i[2], i[3]) for  i in  s]
+    s = [[i.subject, i.sched, float(i.demand)/float(i.slots)] for i in s]
+    s.sort(key = lambda x: x[-1], reverse = True)
+    s = [[i[0], i[1], "{00:.0f}%".format(i[2]*100)] for i in s]
+    subjects = s
 
     context = { 'subjects': subjects, }
     return render(request, 'stats/demand.html', context)

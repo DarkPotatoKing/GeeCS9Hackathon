@@ -1,3 +1,32 @@
-{% for i in subjects %}
-  <li>{{ i }}</li>
-{% endfor %}
+<!DOCTYPE html>
+<head>
+  <title>Demand Page</title>
+  <meta charset= "utf-8"/>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static "stats/stat.css" %}">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+  {% load static %}
+  <script type="text/javascript" src="{% static "stats/stat.js" %}"></script>
+</head>
+
+<body>
+  <table class="results">
+    <thead>
+      <tr role="header">
+        <th id="course-name">Course Name</th>
+        <th id="course-details">Course Details</th>
+        <th id="course-demand">Demand</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in subjects %}
+      <tr role="row">
+          <td id="class">{{ i.0}}</td>
+          <td id="details">{{ i.1 }}</td>
+          <td id="demand">{{ i.2 }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
