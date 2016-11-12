@@ -7,7 +7,8 @@ def index(request):
     return render(request, 'stats/index.html', context)
 
 def stats(request):
-    context = {}
+    subjects = filter(lambda x: x.rank > 0, Subject.objects.all())
+    context = { 'subjects': subjects }
     return render(request, 'stats/stats.html', context)
 
 def recommend(request):
