@@ -2,6 +2,9 @@ from django.shortcuts import render
 
 from .models import Subject
 
+import math
+from fractions import Fraction
+
 class SubjectStats(object):
 
     def __init__(self, rank, slots, demand, subject, section, units, prof, sched):
@@ -23,11 +26,22 @@ def index(request):
 def stats(request):
     s = filter(lambda x: x.rank > 0, Subject.objects.all())
     subjects = [SubjectStats(rank=i.rank, slots=i.slots, demand=i.demand, subject=i.subject, section=i.section, units=i.units, prof=i.prof, sched=i.sched) for i in s]
-    for i, val in enumerate(subjects):
-        subjects[i].total_prob = int(float(val.slots) / float(val.demand) *10000) / 100.0
 
-        if subjects[i].total_prob  >= 100:
-            subjects[i].total_prob = 100.0
+    for i, val in enumerate(subjects):
+        subjects[i].total_prob = float(val.slots) / float(val.demand)
+
+        if subjects[i].total_prob  >= 1:
+            subjects[i].total_prob = 1
+
+    for i in xrange(len(subjects)):
+        for j in xrange(i+1, len(subjects)):
+            if (subjects[i].subject == subjects[j].subject) or (subjects[i].section == subjects[j].section):
+                subjects[j].total_prob = subjects[j].total_prob * (1 - subjects[i].total_prob)
+
+    for i, val in enumerate(subjects):
+        subjects[i].total_prob *= 100
+        subjects[i].total_prob = int(subjects[i].total_prob)
+
     context = { 'subjects': subjects }
 
     return render(request, 'stats/stats.html', context)
