@@ -20,24 +20,24 @@ aside{
     width:2em;
 }
 .main-prob{
-    width:2em;
+    width:1em;
     font-size:2.5em;
 }
 .main-subject{
-    width:15em;    font-size:3em;
+    width:10em;    font-size:3em;
 }
 .main-units{
     width:2em;
     font-size:1.5em;
 }
 .main-profs{
-    width:45em;
+    width:30em;
 }
 .main-sched{
-    width:30em;
+    width:20em;
     font-size:1.5em;
 }
 .main-slots{
-    width:2em;
+    width:1em;
     font-size:1.5em;
 }
