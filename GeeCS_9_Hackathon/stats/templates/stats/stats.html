@@ -1,10 +1,62 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>kiyeme</title>
-        <link rel="stylesheet" href="stats.css">
-        <link rel="stylesheet" href="bootstrap.min.css">
-        <script src="jquery-3.1.1.min.js"></script>
+        <title>Potato</title>
+        <style>
+            main{
+                font-size:0.75em;
+                margin: 1em;
+            }
+            aside{
+                position:fixed;
+                right:1em;
+                width:calc(100% - 70em);
+            }
+            #main-list{
+
+            }
+            #main-list *{
+                text-align:center;
+            }
+            .main-result{
+
+            }
+            .main-result>tr>td{
+                padding:0;
+            }
+            .main-result>tr>td:first-child,.main-result>tr>td:first-child>*{
+                width:2em;
+            }
+            .main-prob{
+                width:0.5em;
+                font-size:2.5em;
+            }
+            .main-subject{
+                width:10em;
+                font-size:3em;
+            }
+            .main-units{
+                width:2em;
+                font-size:1.5em;
+            }
+            .main-profs{
+                width:30em;
+            }
+            .main-sched{
+                width:20em;
+                font-size:1.5em;
+            }
+            .main-slots{
+                width:0.3em;
+                font-size:1.5em;
+            }
+        </style>
+        {% load static %}
+        <link rel="stylesheet" href="{% static "stats/bootstrap.min.css" %}">
+        {% load static %}
+        <script src="{% static "stats/jquery-3.1.1.min.js" %}"></script>
+        {% load static %}
+        <script src="{% static "stats/bootstrap.min.js" %}"></script>
         <script>
             function loaded(){
                 $(".main-rankinput").each(function(ind){
@@ -22,31 +74,54 @@
     <body onload="loaded();">
         <main>
             <table id="main-list">
-                    <% for i in subjects %>
-                        <tbody class="main-result">
-                            <tr>
-                                <td class="main-moveup"><button>&uarr;</button></td>
-                                <td class="main-prob" rowspan="2"><strong>50%</strong></td>
-                                <td class="main-subject" rowspan="3">
-                                    <strong>i.subject</strong>
-                                    i.section
-                                </td>
-                                <td class="main-units" rowspan="3">i.units</td>
-                                <td class="main-profs">i.prof</td>
-                            </tr>
-                            <tr>
-                                <td class="main-rank"><input type="text" class="main-rankinput" value="&nbsp;"></input></td>
-                                <td class="main-sched" rowspan="2">i.sched</td>
-                            </tr>
-                            <tr>
-                                <td class="main-movedn"><button>&darr;</button></td>
-                                <td class="main-slots">
-                                    <strong>i.slots</strong>
-                                    / i.demand
-                                </td>
-                            </tr>
-                        </tbody>
-                    <% endfor %>
+                {% for result in subjects %}
+                    <tbody class="main-result">
+                        <tr>
+                            <td class="main-moveup"><button>&uarr;</button></td>
+                            <td class="main-prob" rowspan="2"><strong>50</strong>%</td>
+                            <td class="main-subject" rowspan="3">
+                                <strong>CS 130</strong>
+                                WFR
+                            </td>
+                            <td class="main-units" rowspan="3">3.0</td>
+                            <td class="main-profs">CANSECO, Roy Vincent</td>
+                        </tr>
+                        <tr>
+                            <td class="main-rank"><input type="text" class="main-rankinput" value="&nbsp;"></input></td>
+                            <td class="main-sched" rowspan="2">WF 8:30-10AM lec CLR2</td>
+                        </tr>
+                        <tr>
+                            <td class="main-movedn"><button>&darr;</button></td>
+                            <td class="main-slots">
+                                <strong>10</strong>
+                                / 5
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody class="main-result">
+                        <tr>
+                            <td class="main-moveup"><button>&uarr;</button></td>
+                            <td class="main-prob" rowspan="2"><strong>100</strong>%</td>
+                            <td class="main-subject" rowspan="3">
+                                <strong>Physics 72</strong>
+                                TWHFV-3
+                            </td>
+                            <td class="main-units" rowspan="3">3.0</td>
+                            <td class="main-profs">ABELLA, Alfred; COMETA, Adam Jesson</td>
+                        </tr>
+                        <tr>
+                            <td class="main-rank"><input type="text" class="main-rankinput" value="&nbsp;"></input></td>
+                            <td class="main-sched" rowspan="2">Th 11:45AM-12:45PM disc NIP F206; TWF 11:45AM-12:45PM lec NIP LP104</td>
+                        </tr>
+                        <tr>
+                            <td class="main-movedn"><button>&darr;</button></td>
+                            <td class="main-slots">
+                                <strong>10</strong>
+                                / 5
+                            </td>
+                        </tr>
+                    </tbody>
+                {% endfor %}
             </table>
         </main>
         <aside>
