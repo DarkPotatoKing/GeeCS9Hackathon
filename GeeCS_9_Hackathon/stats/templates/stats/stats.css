@@ -1,0 +1,43 @@
+main{
+    font-size:0.75em;
+}
+aside{
+    position:fixed;
+}
+#main-list{
+
+}
+#main-list *{
+    text-align:center;
+}
+.main-result{
+
+}
+.main-result>tr>td{
+    padding:0;
+}
+.main-result>tr>td:first-child,.main-result>tr>td:first-child>*{
+    width:2em;
+}
+.main-prob{
+    width:2em;
+    font-size:2.5em;
+}
+.main-subject{
+    width:15em;    font-size:3em;
+}
+.main-units{
+    width:2em;
+    font-size:1.5em;
+}
+.main-profs{
+    width:45em;
+}
+.main-sched{
+    width:30em;
+    font-size:1.5em;
+}
+.main-slots{
+    width:2em;
+    font-size:1.5em;
+}
