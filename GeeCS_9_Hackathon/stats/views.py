@@ -21,7 +21,7 @@ class SubjectStats(object):
 
 def index(request):
     context = {}
-    return render(request, 'stats/index.html', context)
+    return render(request, 'stats/login.html', context)
 
 def stats(request):
     s = filter(lambda x: x.rank > 0, Subject.objects.all())
