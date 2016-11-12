@@ -1,3 +1,84 @@
-{% for i in subjects %}
-  <li>{{ i }}</li>
-{% endfor %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>kiyeme</title>
+        <link rel="stylesheet" href="stats.css">
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <script src="jquery-3.1.1.min.js"></script>
+        <script>
+            function loaded(){
+                $(".main-rankinput").each(function(ind){
+                    $(this).attr("value",ind+1);
+                });
+                $("main,#main-list,.main-result").width(function(ind,val){
+                    return $(window).width()*.75;
+                });
+                for (i=0;i<5;i++)
+                    $("#main-list").append($(".main-result"))
+                console.log($(".main-result"));
+            }
+        </script>
+    </head>
+    <body onload="loaded();">
+        <main>
+            <table id="main-list">
+                    <% for i in subjects %>
+                        <tbody class="main-result">
+                            <tr>
+                                <td class="main-moveup"><button>&uarr;</button></td>
+                                <td class="main-prob" rowspan="2"><strong>50%</strong></td>
+                                <td class="main-subject" rowspan="3">
+                                    <strong>i.subject</strong>
+                                    i.section
+                                </td>
+                                <td class="main-units" rowspan="3">i.units</td>
+                                <td class="main-profs">i.prof</td>
+                            </tr>
+                            <tr>
+                                <td class="main-rank"><input type="text" class="main-rankinput" value="&nbsp;"></input></td>
+                                <td class="main-sched" rowspan="2">i.sched</td>
+                            </tr>
+                            <tr>
+                                <td class="main-movedn"><button>&darr;</button></td>
+                                <td class="main-slots">
+                                    <strong>i.slots</strong>
+                                    / i.demand
+                                </td>
+                            </tr>
+                        </tbody>
+                    <% endfor %>
+            </table>
+        </main>
+        <aside>
+            <form name="search" id="search-form">
+                <input id="search-input" type="text" placeholder="Search"></input>
+            </form>
+            {% if search_results %}
+                <ul id="search-list">
+                {% for result in search_results %}
+                    <li class="search-result">
+                        <div class="search-subject">
+                            <strong>{{ result.subject }}</strong>
+                            {{ result.section }}
+                        </div>
+                        <div class="search-numbers">
+                            <span class="search-slots"><strong>{{ result.slots }}</strong> / {{ result.demand }}</span>
+                            <span class="search-units">{{ result.units }}</span>
+                        </div>
+                        <div class="search-profs">
+                            {{ result.profs }}
+                        </div>
+                        <div class="search-scheds">
+                            {{ result.sched }}
+                        </div>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <div class="search-result search-fail">
+                    <p> waley-waley beh </p>
+                </div>
+            {% endif %}
+        </aside>
+    </body>
+</html>
